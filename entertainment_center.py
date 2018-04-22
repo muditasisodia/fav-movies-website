@@ -1,37 +1,31 @@
 import media
 import fresh_tomatoes
+import urllib.request
+import json
 
-pm=media.Movie("Princess Mononoke",
-                "Saving a forest spirit",
-                "https://upload.wikimedia.org/wikipedia/en/8/8c/Princess_Mononoke_Japanese_poster.png",
-                "https://www.youtube.com/watch?v=4OiMOHRDs14")
+auth='ad7c97ac9bcb03c023df835b77650a9e'
+url='https://api.themoviedb.org/3/movie/'
+imgBasePath='https://image.tmdb.org/t/p/w500'
+trailerBasePath='http://youtube.com/watch?v='
 
-hmc=media.Movie("Howl's Moving Castle",
-                "Adventures with a wizard",
-                "https://upload.wikimedia.org/wikipedia/en/a/a0/Howls-moving-castleposter.jpg",
-                "https://www.youtube.com/watch?v=iwROgK94zcM")
+movies=[]
 
-sa=media.Movie("Spirited Away",
-            "Saving your parents with a dragon",
-            "https://upload.wikimedia.org/wikipedia/en/d/db/Spirited_Away_Japanese_poster.png",
-            "https://www.youtube.com/watch?v=ByXuk9QqQkk")
+'''
+Movies to be added:
+1. Princess Mononoke
+2. Howl's Moving Castle
+3. Spirited Away
+4. The Secret Life of Walter Mitty
+5. The Perks of Being a Wallflower
+6. Pride and Prejudice
+'''
 
-tslowm=media.Movie("The Secret Life of Walter Mitty",
-                    "Turning dreams into reality",
-                    "https://upload.wikimedia.org/wikipedia/en/c/cd/The_Secret_Life_of_Walter_Mitty_poster.jpg",
-                    "https://www.youtube.com/watch?v=HddkucqSzSM")
-
-tpobaw=media.Movie("The Perks of Being a Wallflower",
-                    "The nuances of growing up",
-                    "https://upload.wikimedia.org/wikipedia/en/0/0b/The_Perks_of_Being_a_Wallflower_Poster.jpg",
-                    "https://www.youtube.com/watch?v=n5rh7O4IDc0")
-
-pap=media.Movie("Pride and Prejudice",
-                "Learning to get over ourselves",
-                "https://upload.wikimedia.org/wikipedia/en/0/03/Prideandprejudiceposter.jpg",
-                "https://www.youtube.com/watch?v=1dYv5u6v55Y")
-
-movies = [pm, hmc, sa, tslowm, tpobaw, pap]
+for mId in ['128', '4935', '129', '161', '207703', '284054', '116745', '84892', '11820']:
+    #IDs extracted from movie urls from https://www.themoviedb.org/
+    response=urllib.request.urlopen(url+mId+'?api_key='+auth+'&append_to_response=videos').read()
+    json_obj=str(response, 'utf-8')
+    data=json.loads(json_obj)
+    movies.append(media.Movie(data['title'], data['overview'], imgBasePath+data['poster_path'], trailerBasePath+data['videos']['results'][0]['key']))
 
 fresh_tomatoes.open_movies_page(movies)
 
