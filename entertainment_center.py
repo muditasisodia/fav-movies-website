@@ -7,7 +7,6 @@ auth='ad7c97ac9bcb03c023df835b77650a9e'
 url='https://api.themoviedb.org/3/movie/'
 imgBasePath='https://image.tmdb.org/t/p/w500'
 trailerBasePath='http://youtube.com/watch?v='
-
 movies=[]
 
 '''
@@ -25,7 +24,8 @@ for mId in ['128', '4935', '129', '161', '207703', '284054', '116745', '84892', 
     response=urllib.request.urlopen(url+mId+'?api_key='+auth+'&append_to_response=videos').read()
     json_obj=str(response, 'utf-8')
     data=json.loads(json_obj)
-    movies.append(media.Movie(data['title'], data['overview'], imgBasePath+data['poster_path'], trailerBasePath+data['videos']['results'][0]['key']))
+    movies.append(media.Movie(data['title'], data['overview'], imgBasePath+data['poster_path'],
+                              trailerBasePath+data['videos']['results'][0]['key']))
 
 fresh_tomatoes.open_movies_page(movies)
 
