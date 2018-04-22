@@ -15,6 +15,9 @@ main_page_head = '''
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300" rel="stylesheet">
     <style type="text/css" media="screen">
         body {
             padding-top: 80px;
@@ -35,8 +38,8 @@ main_page_head = '''
             height: 100%;
         }
         .movie-tile {
-            margin-bottom: 20px;
-            padding-top: 20px;
+            margin-bottom: 30px;
+            padding-top: 30px;
         }
         .movie-tile:hover {
             background-color: #EEE;
@@ -54,6 +57,29 @@ main_page_head = '''
             left: 0;
             top: 0;
             background-color: white;
+        }
+        .themoviedblogo{
+            float: right;
+            margin: 0;
+            width: 15%;
+            padding: 1%;
+        }
+        .navbar-brand{
+            font-family: 'Merriweather Sans', sans-serif;
+            font-weight: 800;
+            color: #b21111;
+            font-size: 30px;
+            padding-top: 2.5%;
+        }
+        .navbar{
+            background-color: white;
+            -webkit-box-shadow: 0 8px 6px -6px #ddd;
+            -moz-box-shadow: 0 8px 6px -6px #ddd;
+            box-shadow: 0 8px 6px -6px #ddd;
+        }
+        h3{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
         }
     </style>
     <script type="text/javascript" charset="utf-8">
@@ -102,11 +128,12 @@ main_page_content = '''
     </div>
     <!-- Main Page Content -->
     <div class="container">
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
-          </div>
+      <div class="navbar navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Fresh Tomato <span style="font-family: 'Roboto Condensed', sans-serif; font-size:20px; color: #ce2b2b">Movie Trailers</span></a>
+            <a href="https://www.themoviedb.org/">
+                <img src="https://www.themoviedb.org/static_cache/v4/logos/408x161-powered-by-rectangle-blue-10d3d41d2a0af9ebcb85f7fb62ffb6671c15ae8ea9bc82a2c6941f223143409e.png" class="themoviedblogo"/>
+            </a>
         </div>
       </div>
     </div>
